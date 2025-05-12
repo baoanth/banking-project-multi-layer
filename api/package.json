@@ -25,7 +25,10 @@
     "express": "^4.19.2",    
     "mongoose": "^8.14.0",
     "swagger-ui-express": "^4.6.3",
-    "swagger-jsdoc": "^6.2.8"
+    "swagger-jsdoc": "^6.2.8",
+    "jsonwebtoken": "^9.0.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0"
   },
   "engines": {
     "node": ">=10"

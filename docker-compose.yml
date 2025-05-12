@@ -4,6 +4,8 @@ services:
     build: ./api
     ports:
       - "5000:5000"
+    env_file:
+      - .env  # Chỉ định tệp .env mà Docker sẽ sử dụng
     environment:
       - PORT=5000
       - MONGO_URL=mongodb://mongo:27017/mydb  # Cập nhật URI nếu backend dùng Mongo
@@ -26,3 +28,4 @@ services:
 
 volumes:
   mongo-data:
+

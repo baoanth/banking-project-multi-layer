@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const accountController = require("../controllers/account.controller");
+const auth = require("../middlewares/auth");
 
+// Áp dụng middleware xác thực cho tất cả các route bên dưới
+//router.use(auth);
 /**
  * @swagger
  * /accounts:
@@ -27,8 +30,8 @@ const accountController = require("../controllers/account.controller");
  *       201:
  *         description: Tài khoản đã được tạo thành công
  */
-router.post("/accounts", accountController.create);
-
+//router.post("/accounts", accountController.create);
+router.post("/accounts", auth, accountController.create);
 /**
  * @swagger
  * /accounts/{user}:
@@ -45,8 +48,8 @@ router.post("/accounts", accountController.create);
  *       200:
  *         description: Thông tin tài khoản
  */
-router.get("/accounts/:user", accountController.get);
-
+//router.get("/accounts/:user", accountController.get);
+router.get("/accounts/:user", auth, accountController.get);
 /**
  * @swagger
  * /accounts/{user}:
@@ -118,5 +121,10 @@ router.post("/accounts/:user/transactions", accountController.addTransaction);
  *         description: Giao dịch đã được xóa
  */
 router.delete("/accounts/:user/transactions/:id", accountController.deleteTransaction);
+
+
+
+// Các endpoint cần bảo mật, yêu cầu token xác thực
+
 
 module.exports = router;

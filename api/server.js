@@ -5,7 +5,9 @@
   const bodyParser = require("body-parser");
   const connectDB = require("./config/db");
   const accountRoutes = require("./routes/account.routes");
+  const authRoutes = require("./auth/auth.routes");
   const pkg = require("./package.json");
+  require("dotenv").config();
 
   // 📄 Swagger:
   const swaggerUi = require("swagger-ui-express");
@@ -25,6 +27,8 @@
 
   // Swagger API Docs
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  
+  //app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   // Health Check or Base API info
   app.get("/api", (req, res) => {
@@ -38,7 +42,7 @@
 
   // Main API routes
   app.use("/api", accountRoutes);
-
+  app.use("/api/auth", authRoutes);
   // 404 Handler (optional)
   app.use((req, res, next) => {
     res.status(404).json({ error: "Not Found" });
