@@ -24,6 +24,7 @@
   app.use(cors({ origin: /http:\/\/(localhost|127\.0\.0\.1)/ }));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+ 
 
   // Swagger API Docs
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
